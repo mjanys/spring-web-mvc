@@ -1,0 +1,44 @@
+<%--@elvariable id="items" type="java.util.List<cz.janys.iface.dto.PersonDto>"--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<tbody>
+    <c:forEach items="${items}" varStatus="loop" var="item">
+        <bs:tr>
+            <td>
+                ${loop.index}
+            </td>
+            <td>
+                ${item.name}
+            </td>
+            <td>
+                ${item.email}
+            </td>
+            <td>
+                <fmt:formatDate value="${item.timestamp}" pattern="<%=Constants.DATE_TIME_FORMAT%>"/>
+            </td>
+            <td class="actions">
+                <%-- detail --%>
+                <c:url var="detailUrl" value="/person/${item.id}"/>
+                <h:link href="${detailUrl}">
+                    <span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
+                </h:link>
+
+                <%-- update --%>
+                <c:url var="editUrl" value="/person/edit/${item.id}"/>
+                <h:link href="${editUrl}">
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                </h:link>
+
+                <%-- delete --%>
+                <c:url var="deleteUrl" value="/person/delete"/>
+                <h:link href="javascript:$('#deleteForm').submit()">
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                </h:link>
+                <form:form id="deleteForm" action="${deleteUrl}" method="post">
+                    <input type="hidden" name="id" value="${item.id}"></hidden>
+                </form:form>
+            </td>
+        </bs:tr>
+    </c:forEach>
+</tbody>

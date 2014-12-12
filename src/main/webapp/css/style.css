@@ -1,0 +1,23 @@
+.padding-10 {
+    padding: 10px;
+}
+
+.ucfirst {
+    display: block;
+}
+
+.ucfirst:first-letter {
+    text-transform: uppercase;
+}
+
+#footer {
+    padding-top: 15px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+td.actions a {
+    padding-right: 8px;
+}

@@ -1,0 +1,24 @@
+<%--@elvariable id="personPto" type="cz.janys.app.person.pto.PersonPto"--%>
+<%@ page pageEncoding="UTF-8" %>
+<%@ page import="cz.janys.app.person.PersonConstants" %>
+
+<div id="editForm" class="padding-10">
+    <c:url value="/person/create" var="createUrl"/>
+
+    <form:form modelAttribute="<%=PersonConstants.ATTR_PERSON_PTO%>" action="${createUrl}" method="post">
+        <form:hidden path="id"/>
+        <f:inputrow id="nameInput" path="name" labelCode="label-table-header-name"/>
+        <f:inputrow id="emailInput" path="email" labelCode="label-table-header-email"/>
+
+        <bs:button type="submit" cssClass="btn-default">
+            <c:choose>
+                <c:when test="${empty personPto.id}">
+                    <spring:message code="label-create"/>
+                </c:when>
+                <c:otherwise>
+                    <spring:message code="label-update"/>
+                </c:otherwise>
+            </c:choose>
+        </bs:button>
+    </form:form>
+</div>
