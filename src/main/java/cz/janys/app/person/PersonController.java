@@ -135,13 +135,11 @@ public class PersonController extends AbstractController {
 
             service.updatePerson(dto);
 
-
-
             redirectAttrs.addAttribute(PARAM_ID, String.valueOf(dto.getId()));
             return redirect(PERSON_DETAIL_PAGE);
         }
         else {
-            addErrorMessage(redirectAttrs, "msg-common-err-form-contains-errors");
+            addErrorMessage(model, "msg-common-err-form-contains-errors");
 
             redirectAttrs.addAttribute(PARAM_ID, pto.getId().toString());
             return redirect(PERSON_FORM_EDIT_PAGE);
