@@ -200,6 +200,19 @@
             <version>2.2.4</version>
             <!--<scope>test</scope>-->
         </dependency>
+
+        <dependency>
+            <groupId>io.gatling.highcharts</groupId>
+            <artifactId>gatling-charts-highcharts</artifactId>
+            <version>2.0.0-RC4</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.gatling</groupId>
+            <artifactId>gatling-core</artifactId>
+            <version>2.0.0-RC4</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -218,7 +231,7 @@
                     <outputDirectory>${project.basedir}/src/main/webapp/css</outputDirectory>
                     <compress>false</compress>
                     <includes>
-                        <include>bootstrap.less</include>
+                         <include>bootstrap.less</include>
                     </includes>
                     <lessJs>${project.basedir}/src/main/resources/bootstrap/less.min.js</lessJs>
                 </configuration>
@@ -230,6 +243,31 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <!-- Gatling -->
+            <plugin>
+                <groupId>io.gatling</groupId>
+                <artifactId>gatling-maven-plugin</artifactId>
+                <version>2.0.0-RC4</version>
+                <executions>
+                    <execution>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>execute</goal>
+                        </goals>
+                        <configuration>
+                            <skip>true</skip>
+                            <!-- Default values -->
+                            <configFolder>src/test/resources</configFolder>
+                            <!--<dataFolder>src/test/resources/gatling/data</dataFolder>-->
+                            <resultsFolder>target/gatling/results</resultsFolder>
+                            <!--<requestBodiesFolder>src/test/resources/gatling/request-bodies</requestBodiesFolder>-->
+                            <simulationsFolder>src/test/scala</simulationsFolder>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
     </build>
 
